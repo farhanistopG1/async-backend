@@ -140,7 +140,7 @@ user query: {query}"""
 
         
     
-async def generate_reply(query):
+async def generate_reply(query, context):
     #try block 
     try:
         logging.info(f"starting reply generation for query") 
@@ -155,7 +155,7 @@ async def generate_reply(query):
         for attempts in range(3):
             try:
                 logging.info(f"sending query to brain, attempt {attempts + 1} for query:{query}")
-                cache_query[query] = await brain(build_prompt(query))
+                cache_query[query] = await brain(build_prompt(query), context)
                 logging.info(f"successfully received reply from brain for query: {query}") 
                 logging.info(f"reply generation done for query: {query}")
                 return {
@@ -200,7 +200,7 @@ user review: {review}
     """    
     
     
-async def analyze_review(review):
+async def analyze_review(review, context):
     try:
         logging.info(f"starting review analysis for review")
         if review in cache_review:
@@ -214,7 +214,7 @@ async def analyze_review(review):
         for attempts in range(3):
             try:
                 logging.info(f"sending review to brain, attempt {attempts + 1} for review:{review}")
-                cache_review[review] = await brain(build_review_prompt(review))
+                cache_review[review] = await brain(build_review_prompt(review), context)
                 logging.info(f"successfully received analysis from brain for review: {review}") 
                 logging.info(f"Analysis done for review: {review}")
                 return {"from" : "AI Assistant🤖",
