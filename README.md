@@ -1,31 +1,67 @@
-# Async Backend
+## Production Deployment
 
-A small FastAPI project built to internalize async architecture, request flow, and AI orchestration.
+Customer Support Engine V2 is deployed as a production service on a Linux VPS using FastAPI, PostgreSQL, pgvector, systemd, nginx, and HTTPS.
 
-## Goal
+### Production Stack
 
-Learn:
+* FastAPI
+* PostgreSQL
+* pgvector
+* LangChain Recursive Character Text Splitter
+* Semantic Search
+* Linux VPS
+* systemd
+* nginx Reverse Proxy
+* HTTPS (Let's Encrypt)
 
-- async/await
-- request flow
-- API contracts
-- orchestration
-- caching
-- retries
+### Production Pipeline
 
-## Architecture
+Knowledge Files
 
-body.py
 ↓
-organs.py
+
+Recursive Chunking
+
 ↓
-brain.py
 
-## Endpoints
+Embedding Generation
 
-/customer-support
-/restaurant-review-analyzer
+↓
 
-## Key Learning
+PostgreSQL + pgvector
 
-This project marks the point where I stopped viewing async as syntax and started viewing it as an architectural concept involving waiting boundaries and transfer of async through the call chain.
+↓
+
+Semantic Retrieval
+
+↓
+
+LLM Response Generation
+
+### Deployment Challenges Solved
+
+During production deployment, the following issues were resolved:
+
+* Runtime dependency management
+* PostgreSQL authentication
+* pgvector installation and activation
+* Database role permissions
+* Schema initialization
+* Knowledge bootstrapping
+* Production startup debugging using journalctl
+
+### Key Engineering Lesson
+
+A production deployment is more than deploying application code.
+
+The complete system requires:
+
+* Runtime dependencies
+* Database connectivity
+* Extensions
+* Permissions
+* Schema creation
+* Knowledge seeding
+* Health verification
+
+Only after every layer is operational can the application begin serving requests successfully.
